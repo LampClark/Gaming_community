@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GamingCommunityHub</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+      <h1>Welcome, <%= current_user.email %></h1>
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'button' %>
+    <% else %>
+      <%= link_to 'Login', new_user_session_path %> or
+      <%= link_to 'Sign Up', new_user_registration_path %>
+    <% end %>
+    <br>
+    <%= link_to 'Home', root_path %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

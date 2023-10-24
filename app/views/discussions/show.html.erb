@@ -1,0 +1,7 @@
+<div class="discussion-details">
+  <h2><%= @discussion.title %></h2><hr>
+  <p><%= @discussion.description %></p>
+  <p>Created by: <%= @discussion.user.username %></p>
+  <p>Created at: <%= @discussion.created_at.strftime("%e %B, %Y at %l:%M %p") %></p>
+  <p>Last updated at: <%= @discussion.updated_at.strftime("%e %B, %Y at %l:%M %p") %></p>
+</div>

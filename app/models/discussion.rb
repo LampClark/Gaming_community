@@ -1,5 +1,5 @@
 class Discussion < ApplicationRecord
   belongs_to :user
   has_many :comments
-  has_one_attached :attachment
+  has_many_attached :attachments
 end

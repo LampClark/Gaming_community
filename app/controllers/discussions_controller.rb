@@ -1,12 +1,12 @@
 class DiscussionsController < ApplicationController
   before_action :authenticate_user! , only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_discussion, only: [:show, :edit, :update, :destroy]
 
   def index
     @discussions = Discussion.all
   end
 
   def show
-    @discussion = Discussion.find(params[:id])
   end
 
   def new
@@ -28,13 +28,24 @@ class DiscussionsController < ApplicationController
   end
 
   def update
+    if @discussion.update(discussion_params)
+      redirect_to @discussion, notice: "discussion was successfully updated."
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @discussion.destroy
+    redirect_to discussion_url, notice: "Discussion was successfully destroyed."
   end
 end
 
 private
+
+  def set_discussion
+    @discussion = Discussion.find(params[:id])
+  end
 
   def discussion_params
     params.require(:discussion).permit(:title, :description, :attachment)

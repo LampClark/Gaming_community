@@ -4,11 +4,14 @@
   <p>Created by: <%= @discussion.user.username %></p>
   <p><%= time_ago_in_words(@discussion.created_at) %> Ago</p>
   <p>Last updated at: <%= time_ago_in_words(@discussion.updated_at) %></p>
+  <% if current_user == @discussion.user %>
+  <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion) %></p>
+  <% end %>
 </div>
 
 <% @discussion.posts.each do |post| %>
   <div>
-    <p><strong><%= post.user.username %></strong></p><hr>
+    <p><strong><%= post.user.username %></strong></p>
     <p><%= post.content %></p>
     <p><%= time_ago_in_words(post.created_at) %> Ago</p>
     <p>Last updated: <%= time_ago_in_words(post.updated_at) %></p>

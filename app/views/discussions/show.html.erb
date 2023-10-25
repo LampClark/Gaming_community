@@ -2,6 +2,20 @@
   <h2><%= @discussion.title %></h2><hr>
   <p><%= @discussion.description %></p>
   <p>Created by: <%= @discussion.user.username %></p>
-  <p>Created at: <%= @discussion.created_at.strftime("%e %B, %Y at %l:%M %p") %></p>
-  <p>Last updated at: <%= @discussion.updated_at.strftime("%e %B, %Y at %l:%M %p") %></p>
+  <p><%= time_ago_in_words(@discussion.created_at) %> Ago</p>
+  <p>Last updated at: <%= time_ago_in_words(@discussion.updated_at) %></p>
 </div>
+
+<% @discussion.posts.each do |post| %>
+  <div>
+    <p><strong><%= post.user.username %></strong></p><hr>
+    <p><%= post.content %></p>
+    <p><%= time_ago_in_words(post.created_at) %> Ago</p>
+    <p>Last updated: <%= time_ago_in_words(post.updated_at) %></p>
+  </div>
+<% end %>
+
+<%= form_with(model: [@discussion, @discussion.posts.build], url: discussion_posts_path(@discussion), local: true) do |form| %>
+  <%= form.text_area :content, placeholder: "Enter your thread content" %>
+  <%= form.submit "Post Thread" %>
+<% end %>

@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "homepages#index"
-  resources :discussions
+  resources :discussions do
+    resources :posts, only: [:create]
+  end
 end

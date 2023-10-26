@@ -11,7 +11,9 @@
 <% if @discussion.attachments.attached? %>
   <% @discussion.attachments.each do |attachment| %>
     <% if attachment.image? %>
-      <%= image_tag attachment %>
+      <div class="image-container">
+        <%= image_tag attachment, class: "thumbnail-image" %>
+      </div>
     <% else %>
       <p><%= link_to attachment.filename, rails_blob_path(attachment) %></p>
     <% end %>

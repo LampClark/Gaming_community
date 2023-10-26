@@ -48,5 +48,5 @@ private
   end
 
   def discussion_params
-    params.require(:discussion).permit(:title, :description, :attachment)
+    params.require(:discussion).permit(:title, :description, attachments: [])
   end

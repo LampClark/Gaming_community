@@ -5,8 +5,18 @@
   <p><%= time_ago_in_words(@discussion.created_at) %> Ago</p>
   <p>Last updated at: <%= time_ago_in_words(@discussion.updated_at) %></p>
   <% if current_user == @discussion.user %>
-  <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion) %></p>
+    <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion) %></p>
   <% end %>
+
+<% if @discussion.attachments.attached? %>
+  <% @discussion.attachments.each do |attachment| %>
+    <% if attachment.image? %>
+      <%= image_tag attachment %>
+    <% else %>
+      <p><%= link_to attachment.filename, rails_blob_path(attachment) %></p>
+    <% end %>
+  <% end %>
+<% end %>
 </div>
 
 <% @discussion.posts.each do |post| %>
@@ -18,7 +28,11 @@
   </div>
 <% end %>
 
-<%= form_with(model: [@discussion, @discussion.posts.build], url: discussion_posts_path(@discussion), local: true) do |form| %>
-  <%= form.text_area :content, placeholder: "Enter your thread content" %>
-  <%= form.submit "Post Thread" %>
+<% if current_user %>
+  <%= form_with(model: [@discussion, @discussion.posts.build], url: discussion_posts_path(@discussion), local: true) do |form| %>
+    <%= form.text_area :content, placeholder: "Enter your thread content" %>
+    <%= form.submit "Post Thread" %>
+  <% end %>
+<% else %>
+  <p>Please <%= link_to "sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a thread.</p>
 <% end %>

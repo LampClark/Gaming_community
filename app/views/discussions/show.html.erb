@@ -1,7 +1,7 @@
 <div class="discussion-details">
   <h2><%= @discussion.title %></h2><hr>
   <p><%= @discussion.description %></p>
-  <p>Created by: <%= @discussion.user.username %></p>
+  <p>Created by: <%= link_to @discussion.user.username, profile_path(@discussion.user) %></p>
   <p><%= time_ago_in_words(@discussion.created_at) %> Ago</p>
   <p>Last updated at: <%= time_ago_in_words(@discussion.updated_at) %></p>
   <% if current_user == @discussion.user %>
@@ -23,7 +23,7 @@
 
 <% @discussion.posts.each do |post| %>
   <div>
-    <p><strong><%= post.user.username %></strong></p>
+    <p><strong><%= link_to post.user.username, profile_path(post.user) %></strong></p>
     <p><%= post.content %></p>
     <p><%= time_ago_in_words(post.created_at) %> Ago</p>
     <p>Last updated: <%= time_ago_in_words(post.updated_at) %></p>

@@ -14,7 +14,7 @@
     <% if user_signed_in? %>
       <div class="user-info">
         <h1>Welcome, <%= current_user.username %></h1>
-        <li><%= link_to 'Profile', profile_path %></li>
+        <li><%= link_to 'Profile', profile_path(current_user) %></li>
         <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
       </div>
     <% else %>

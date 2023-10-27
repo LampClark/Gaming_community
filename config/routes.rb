@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     resources :posts, only: [:create]
   end
 
-  get 'profile', to: 'profiles#show'
+  resources :profiles, only: [:show]
 end

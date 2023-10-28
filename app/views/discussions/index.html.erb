@@ -4,14 +4,14 @@
     <div class="discussion">
         <h2><%= link_to discussion.title, discussion %></h2>
         <small><%= discussion.description %></small>
-        <p>Posted by <%= link_to discussion.user.username, profile_path(discussion.user) %> on <%= discussion.created_at.strftime("%d %B, %Y at %H:%M") %></p>
+        <p>Posted by <%= link_to discussion.user.username, profile_path(discussion.user) %> on <%= discussion.created_at.strftime("%d %B, %Y at %I:%M %p") %></p>
         <% if discussion.posts.any? %>
-            <p>Last Post: <%= discussion.posts.last.created_at.strftime("%d %B, %Y at %H:%M") %></p>
+            <p>Last Post: <%= discussion.posts.last.created_at.strftime("%d %B, %Y at %I:%M %p") %></p>
         <% else %>
-            <p>Last Post: <%= discussion.created_at.strftime("%d %B, %Y at %H:%M") %></p>
+            <p>Last Post: <%= discussion.created_at.strftime("%d %B, %Y at %I:%M %p") %></p>
         <% end %>
-        <p>Replies: <%= discussion.posts.count %></p>
-            </div>
+        <p>Replies: <%= discussion.posts.count %></p><hr>
+    </div>
 <% end %>
 
 <%= link_to "New Discussion", new_discussion_path %>

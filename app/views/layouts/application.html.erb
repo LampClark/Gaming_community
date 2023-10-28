@@ -8,26 +8,109 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <style>
+.top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #272222;
+        padding: 10px;
+        margin-bottom: 20px;
+        z-index: 9999;
+      }
+
+      .top-bar h2 {
+        margin: 0;
+        font-size: 24px;
+        color: #dac4c4;
+      }
+
+      .dropdown-menu {
+        position: relative;
+        display: inline-block;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #423d3e;
+        box-shadow: 0px 8px 19px 0px rgb(175, 78, 22);
+        min-width: 160px;
+        z-index: 1;
+        padding: 8px 0;
+        border-radius: 4px;
+      }
+
+      .dropdown-content a {
+        color: rgb(255, 255, 255);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      
+    </style>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <div class="user-info">
-        <h1>Welcome, <%= current_user.username %></h1>
-        <li><%= link_to 'Profile', profile_path(current_user) %></li>
-        <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
+    <div class="top-bar">
+      <div class="top-left">
+        <%= link_to image_tag('logo.png', height: 47), root_path %>
       </div>
-    <% else %>
-      <div class="user-actions">
-        <%= link_to 'Login', new_user_session_path %> or
-        <%= link_to 'Sign Up', new_user_registration_path %>
-      </div>
-    <% end %>
 
-    <br>
-    <%= link_to 'Home', root_path %>
+      <div class="top-center">
+        <h2>Welcome to GamingCommunityHub</h2>
+      </div>
+
+      <div class="top-right">
+        <% if user_signed_in? %>
+          <div class="user-info">
+            <div class="dropdown">
+              <button class="btn btn-primary">
+                Welcome, <%= current_user.username %>
+              </button>
+              <div class="dropdown-content">
+                <%= link_to 'Go to Profile', profile_path(current_user) %>
+                <%= link_to 'Logout', destroy_user_session_path, data: {turbo_method: :delete} %>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="user-actions">
+            <%= link_to 'Login', new_user_session_path %> or
+            <%= link_to 'Sign Up', new_user_registration_path %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        var dropdown = document.querySelector(".dropdown");
+        var dropdownContent = dropdown.querySelector(".dropdown-content");
+
+        dropdown.addEventListener("click", function() {
+          dropdownContent.classList.toggle("show");
+        });
+
+        document.addEventListener("click", function(event) {
+          if (!dropdown.contains(event.target)) {
+            dropdownContent.classList.remove("show");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

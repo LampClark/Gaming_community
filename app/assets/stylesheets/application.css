@@ -18,8 +18,8 @@
      height: 200px;
      overflow: hidden;
  } */
- /* layouts/application.html.erb */
- body {
+/* layouts/application.html.erb */
+body {
   padding-top: 70px;
   background-color: #333333;
   color: #ffffff;

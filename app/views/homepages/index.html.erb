@@ -1,3 +1,9 @@
-<h1>Hello NYA~</h1>
-<h2>This is the homepage</h2>
-<%= link_to "Go to discussions", discussions_path %>
+<div class="homepage-container">
+  <div class="homepage-box">
+    <h2 class="homepage-heading">This is the homepage</h2>
+    <div class="homepage-line"></div>
+    <div>
+      <%= link_to "Go to discussions", discussions_path, class: "homepage-button" %>
+    </div>
+  </div>
+</div>

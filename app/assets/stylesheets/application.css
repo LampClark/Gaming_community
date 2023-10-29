@@ -18,13 +18,601 @@
      height: 200px;
      overflow: hidden;
  } */
- 
+ /* layouts/application.html.erb */
+ body {
+  padding-top: 70px;
+  background-color: #333333;
+  color: #ffffff;
+}
+
+body a {
+  color: #ffffff;
+}
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #272222;
+  padding: 10px;
+  margin-bottom: 20px;
+  z-index: 9999;
+}
+
+.user-actions {
+  color: #ffffff;
+}
+
+.user-actions a {
+  color: #e26d0c;
+  text-decoration: none;
+}
+
+.user-actions a:hover {
+  color: #ff9e1f;
+}
+
+.top-bar h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #dac4c4;
+}
+
+.dropdown-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.circle-button {
+  color: #ff9e1f;
+  background-color: #535250;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #423d3e;
+  box-shadow: 0px 8px 19px 0px rgb(175, 78, 22);
+  min-width: 160px;
+  z-index: 1;
+  padding: 8px 0;
+  border-radius: 4px;
+}
+
+.dropdown-content a {
+  color: rgb(255, 255, 255);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+ /* layouts/application.html.erb */
+ /* layouts all Done */
+
+ /* homepages/index.html.erb */
+ .homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+}
+
+.homepage-box {
+  width: 300px;
+  padding: 20px;
+  background-color: #414141;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.homepage-heading {
+  color: #ddd;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.homepage-line {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  margin-bottom: 20px;
+}
+
+.homepage-button {
+  padding: 10px 20px;
+  background-color: #c95621;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.homepage-button:hover {
+  background-color: #ff6600;
+}
+ /* homepages/index.html.erb */
+ /* homepages all Done */
+
+ /* discussions/index.html.erb */
+ .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.discussion {
+  background-color: #474747;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(233, 115, 18, 0.973);
+}
+
+.discussion-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.discussion-description {
+  font-size: 14px;
+  color: #f8f8f8;
+  margin-bottom: 10px;
+}
+
+.discussion-meta {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.discussion-link {
+  color: #f07b0d;
+  text-decoration: none;
+}
+
+.discussion-link:hover {
+  color: #ffb938;
+}
+
+.discussion-separator {
+  border: none;
+  border-top: 1px solid #dddddd;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.new-discussion-link {
+  font-size: 25px;
+  font: bold;
+  color: #ffffff;
+  background-color: #fd9432;
+  padding: 10px 20px;
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.new-discussion-link:hover {
+    background-color: #ff6600;
+}
+ /* discussions/index.html.erb */
+
+ /* discussions/show.html.erb */
+ .discussion-box {
+  background-color: rgb(51, 51, 51);
+  color: #ffffff;
+  border: 2px solid #ff7b00;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.discussion-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+  border-bottom: 1px solid #ec8713;
+  padding-bottom: 10px;
+}
+
+.discussion-description {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.discussion-creator {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.discussion-creator a {
+  text-decoration: none;
+  color: #ee6306;
+}
+
+.discussion-creator a:hover {
+  color: #ffb938;
+}
+
+.discussion-edit a {
+  color: #ee6306;
+  text-decoration: none;
+}
+
+.discussion-edit a:hover {
+  color: #ffb938;
+}
+
+.discussion-metadata {
+  font-size: 14px;
+}
+
+.discussion-metadata span {
+  margin-right: 10px;
+}
+
+.discussion-attachments {
+  border-top: 1px solid #ec8713;
+  padding-top: 20px;
+}
+
+.attachment-link {
+  display: block;
+  margin-bottom: 10px;
+}
+
 .thumbnail-image {
-    max-width: 200px;
-    max-height: 200px;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .image-container {
   display: inline-block;
-  /* Add any additional styling you need */
 }
+
+.post-box {
+  background-color: rgb(51, 51, 51);
+  color: #ddd;
+  border: 2px solid #ee6306;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.post-number {
+  color: #ee6306;
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
+  margin-top: -20px;
+}
+
+.post-username {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.post-username a {
+  color: #ee6306;
+  text-decoration: none;
+}
+
+.post-username a:hover {
+  color: #ffb938;
+}
+
+.post-content {
+  margin-top: 10px;
+}
+
+.new-post-form {
+  margin-top: 20px;
+  border-top: 1px solid #f07f15;
+  padding-top: 20px;
+}
+
+.post-content-input {
+  background-color: rgb(51, 51, 51);
+  color: #e06806;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #ec8713;
+  resize: vertical;
+}
+
+.post-submit-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #ec8713;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+}
+
+.login-message {
+  color: #ddd;
+  margin-top: 20px;
+}
+
+.login-link {
+  color: #337ab7;
+  text-decoration: underline;
+}
+/* discussions/show.html.erb */
+/* discussions all Done */
+
+/* profiles/show.html.erb */
+.profile-box {
+  border : 1px solid #f75414;
+  background-color: #474747;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.profile-box a {
+  text-decoration: none;
+  color: #ff6a14;
+}
+
+.profile-box a:hover {
+  color: #ff9a27;
+}
+
+.discussion-box {
+  border: 2px solid #f75414;
+  background-color: #474747;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.discussion-box a {
+  text-decoration: none;
+  color: #ff6a14;
+}
+.discussion-box a:hover {
+  color: #ff9a27;
+}
+
+.post-box {
+  border: 2px solid #f75414;
+  background-color: rgb(65, 62, 62);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.post-box a {
+  text-decoration: none;
+  color: #ff6a14;
+}
+.post-box a:hover {
+  text-decoration: none;
+  color: #ff9a27;
+}
+/* profiles/show.html.erb */
+
+/* profiles/_form.html.erb */
+.edit-profile-heading {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.profile-form {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.update-button {
+  background-color: #fc7a00;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.update-button:hover {
+  background-color: #f8510e;
+}
+/* profiles/_form.html.erb */
+/* Profiles all Done */
+
+/* Devise/registrations/new.html.erb */
+.signup-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid #e48c1a;
+  border-radius: 5px;
+  position: relative;
+}
+
+.signup-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/signup.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(0.5px);
+  z-index: -1;
+}
+
+.signup-title {
+  color: #e77d03;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.field {
+  color: #ffa227;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.field label {
+  font-weight: bold;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #eb8b0f;
+  border-radius: 10px;
+}
+
+.actions {
+  text-align: center;
+}
+
+.actions input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #c76329;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions:hover input[type="submit"] {
+  background-color: #ff6600;
+}
+
+.signup-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signup-links a {
+  color: #e25716;
+  text-decoration: none;
+}
+
+.signup-links a:hover {
+  color: #ffb938;
+}
+/* Devise/registrations/new.html.erb */
+
+/* Devise/sessions/new.html.erb */
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid #e48c1a;
+  border-radius: 5px;
+  position: relative;
+}
+
+.login-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/login.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px);
+  z-index: -1;
+}
+
+.login-title {
+  color: #e77d03;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.field {
+  color: #ffa227;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.field label {
+  font-weight: bold;
+}
+
+.field input[type="email"],
+.field input[type="password"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #eb8b0f;
+  border-radius: 10px;
+}
+
+.field input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.actions {
+  text-align: center;
+}
+
+.actions input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #c76329;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.actions:hover input[type="submit"] {
+  background-color: #ff6600;
+}
+
+.login-links {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-links a {
+  color: #e25716;
+  text-decoration: none;
+}
+
+.login-links a:hover {
+  color: #ff8c49;
+}
+/* Devise/sessions/new.html.erb */
+/* Devise all Done */

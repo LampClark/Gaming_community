@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:create]
   end
 
-  resources :profiles, only: [:show]
+  resources :profiles, only: [:show, :edit, :update]
+
+  devise_for :users, skip: [:sessions], controllers: { registrations: 'registrations' }
 end

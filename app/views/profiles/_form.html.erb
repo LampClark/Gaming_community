@@ -1,0 +1,27 @@
+<h1 class="edit-profile-heading">Edit Profile</h1>
+
+<%= form_for @user, url: profile_path, method: :patch, html: { class: "profile-form" } do |f| %>
+  <p class="form-field">
+    <%= f.label :username, "Name" %><br>
+    <%= f.text_field :username, class: "profile-input" %>
+  </p>
+  <p class="form-field">
+    <%= f.label :email, "Email" %><br>
+    <%= f.email_field :email, class: "profile-input" %>
+  </p>
+  <p class="form-field">
+    <%= f.label :password, "Password" %><br>
+    <%= f.password_field :password, class: "profile-input" %>
+  </p>
+  <p class="form-field">
+    <%= f.label :password_confirmation, "Confirm Password" %><br>
+    <%= f.password_field :password_confirmation, class: "profile-input" %>
+  </p>
+  <p class="form-field">
+    <%= f.label :current_password, "Current Password" %><br>
+    <%= f.password_field :current_password, class: "profile-input" %>
+  </p>
+  <p>
+    <%= f.submit "Update", class: "update-button" %>
+  </p>
+<% end %>

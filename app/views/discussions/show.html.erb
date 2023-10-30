@@ -9,6 +9,7 @@
     <% if current_user == @discussion.user %>
     <div class="discussion-edit">
       <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion) %></p>
+      <p><%= link_to "Delete", discussion_path(@discussion), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-button" %></p>
     </div>
     <% end %>
   </div>

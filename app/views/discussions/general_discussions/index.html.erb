@@ -1,11 +1,11 @@
-<title>Discussions</title>
+<title>General Discussions</title>
 
 <div class="container">
-  <h1>Discussions</h1>
+  <h1>General Discussions</h1>
 
   <% @discussions.sort_by { |discussion| discussion.posts.last&.created_at || discussion.created_at }.reverse.each do |discussion| %>
     <div class="discussion">
-      <h2 class="discussion-title"><%= link_to discussion.title, discussion, class: "discussion-link" %></h2>
+      <h2 class="discussion-title"><%= link_to discussion.title, general_discussion_path(discussion), class: "discussion-link" %></h2>
       <small class="discussion-description"><%= discussion.description %></small>
       <p class="discussion-meta">Posted by <%= link_to discussion.user.username, profile_path(discussion.user), class: "discussion-link" %> on <%= discussion.created_at.strftime("%d %B, %Y at %I:%M %p") %></p>
       <% if discussion.posts.any? %>
@@ -18,5 +18,5 @@
     </div>
   <% end %>
 
-  <%= link_to "New Discussion", new_discussion_path, class: "new-discussion-link" %>
+  <%= link_to "New Discussion", new_general_discussion_path, class: "new-discussion-link" %>
 </div>

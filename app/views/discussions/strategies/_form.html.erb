@@ -4,7 +4,7 @@
   <h1 class="discussion-title">Create a new discussion</h1>
 <% end %>
 
-<%= form_for @discussion, html: { class: "discussion-form" } do |f| %>
+<%= form_for @discussion, url: @discussion.persisted? ? strategy_path(@discussion) : strategies_path, html: { class: "discussion-form" } do |f| %>
   <div class="form-group">
     <%= f.label :title, "Title:" %>
     <%= f.text_field :title, placeholder: "Enter title", class: "form-input" %>
@@ -22,10 +22,10 @@
 
   <div class="form-group">
     <% if @discussion.persisted? %>
-        <%= link_to "Back", discussion_path, class: "back-link" %>
+        <%= link_to "Back", strategy_path(@discussion), class: "back-link" %>
         <%= f.submit "Edit Discussion", class: "form-submit-button" %>
     <% else %>
-        <%= link_to "Back", discussions_path, class: "back-link" %>
+        <%= link_to "Back", strategies_path, class: "back-link" %>
         <%= f.submit "Create Discussion", class: "form-submit-button" %>
     <% end %>
   </div>

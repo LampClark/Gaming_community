@@ -1,4 +1,4 @@
-<title>Discussion Details</title>
+<title>Strategy Discussion Details</title>
 
 <div class="discussion-box">
   <h2 id="discussion-<%= @discussion.id %>" class="discussion-title"><%= @discussion.title %></h2>
@@ -7,10 +7,10 @@
     <p>Created <%= time_ago_in_words(@discussion.created_at) %> Ago</p>
     <p>Last updated: <%= time_ago_in_words(@discussion.updated_at) %></p>
     <% if current_user == @discussion.user %>
-    <div class="discussion-edit">
-      <p><%= link_to "Edit Discussion", edit_discussion_path(@discussion) %></p>
-      <p><%= link_to "Delete", discussion_path(@discussion), data: {turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-button" %></p>
-    </div>
+      <div class="discussion-edit">
+        <p><%= link_to "Edit Discussion", edit_strategy_path(@discussion) %></p>
+        <p><%= link_to "Delete", strategy_path(@discussion), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-button" %></p>
+      </div>
     <% end %>
   </div>
   <hr>
@@ -47,7 +47,7 @@
 </div>
 
 <% if current_user %>
-  <%= form_with(model: [@discussion, @discussion.posts.build], url: discussion_posts_path(@discussion), local: true, class: "new-post-form") do |form| %>
+  <%= form_with(model: [ @discussion, @discussion.posts.build ], url: discussion_posts_path(@discussion), local: true, class: "new-post-form") do |form| %>
     <%= form.text_area :content, placeholder: "Enter your thread content", class: "post-content-input" %>
     <%= form.submit "Post Thread", class: "post-submit-button" %>
   <% end %>
@@ -55,18 +55,3 @@
   <p class="login-message">Please <%= link_to "sign up", new_user_registration_path, class: "login-link" %>
     or <%= link_to "log in", new_user_session_path, class: "login-link" %> to post a thread.</p>
 <% end %>
-
-<script>
-  // Smooth scroll effect when clicking post number link
-  const postNumberLinks = document.querySelectorAll('.post-number');
-  postNumberLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      const targetId = event.target.getAttribute('href').replace('#', '');
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-</script>

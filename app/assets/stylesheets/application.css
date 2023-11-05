@@ -113,8 +113,10 @@ body a {
 }
 
 .homepage-box {
-  width: 300px;
-  padding: 20px;
+  width: 40%;
+  padding: 3%;
+  position: relative;
+  margin: 0 auto;
   background-color: #414141;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -135,11 +137,15 @@ body a {
 }
 
 .homepage-button {
+  margin-top: 10px;
   padding: 10px 20px;
   background-color: #c95621;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .homepage-button:hover {
@@ -403,7 +409,7 @@ body a {
 .post-content-input {
   background-color: rgb(51, 51, 51);
   color: #e06806;
-  width: 100%;
+  width: 98%;
   height: 100px;
   padding: 10px;
   border: 1px solid #ec8713;

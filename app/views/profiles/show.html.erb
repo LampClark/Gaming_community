@@ -1,6 +1,11 @@
 <title>Profile</title>
 
 <div class="profile-box">
+    <% if @user.profile_picture.attached? %>
+        <%= image_tag @user.profile_picture, class: "profile-picture" %>
+    <% else %>
+        <%= image_tag "ProfilePic.jpg", class: "profile-picture" %>
+    <% end %>
     <h1 class="profile-heading">Profile</h1>
     <p class="profile-info">Name: <%= @user.username %></p>
 
@@ -13,7 +18,7 @@
     <li class="discussion-item">
         <div class="discussion-box">
             <strong class="discussion-title">Title:</strong>
-            <%= link_to discussion.title, discussion_path(discussion), class: "discussion-link" %><br>
+            <%= link_to discussion.title, general_discussion_path(discussion), class: "discussion-link" %><br>
             <strong class="discussion-owner">Owner:</strong> <%= discussion.user.username %>
         </div>
     </li>

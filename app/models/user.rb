@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates_uniqueness_of :username
   has_many :discussions
   has_many :posts, dependent: :destroy
+  has_one_attached :profile_picture
 end

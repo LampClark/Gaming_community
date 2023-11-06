@@ -358,6 +358,7 @@ body a {
 }
 
 .thumbnail-image {
+  border-radius: 3%;
   max-width: 200px;
   max-height: 200px;
 }
@@ -452,6 +453,14 @@ body a {
 
 .profile-box a:hover {
   color: #ff9a27;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .discussion-box {

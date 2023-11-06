@@ -6,6 +6,15 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to profile_path(@user)
+    else
+      render 'new'
+    end
+  end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -22,7 +31,7 @@ class ProfilesController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :email)
+    params.require(:user).permit(:username, :email, :profile_picture)
   end
 
   def authorize_owner

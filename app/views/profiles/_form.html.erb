@@ -2,6 +2,11 @@
 
 <h1 class="edit-profile-heading">Edit Profile</h1>
 
+<%= form_for @user, url: profile_path, method: :patch, html: { class: "profile-form", multipart: true } do |f| %>
+  <%= f.file_field :profile_picture %>
+  <%= f.submit "Upload Picture" %>
+<% end %>
+
 <%= form_for @user, url: profile_path, method: :patch, html: { class: "profile-form" } do |f| %>
   <p class="form-field">
     <%= f.label :username, "Name" %><br>

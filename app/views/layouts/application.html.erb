@@ -26,7 +26,11 @@
           <div class="user-info">
             <div class="dropdown">
               <button class="circle-button">
-                <%= current_user.username %>
+                <% if current_user.profile_picture.attached? %>
+                  <%= image_tag current_user.profile_picture, class: "profile-picture", style: "width: 45px; height: 45px;" %>
+                <% else %>
+                  <%= image_tag "ProfilePic.jpg", class: "profile-picture", style: "width: 45px; height: 45px;" %>
+                <% end %>
               </button>
               <div class="dropdown-content" style="right: 1px;">
                 <%= link_to 'Go to Profile', profile_path(current_user) %>

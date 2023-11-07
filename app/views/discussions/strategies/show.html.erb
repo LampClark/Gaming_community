@@ -3,6 +3,11 @@
 <div class="discussion-box">
   <h2 id="discussion-<%= @discussion.id %>" class="discussion-title"><%= @discussion.title %></h2>
   <div class="discussion-metadata">
+    <% if @discussion.user.profile_picture.attached? %>
+      <%= image_tag @discussion.user.profile_picture, class: "profile-picture" %>
+    <% else %>
+      <%= image_tag "ProfilePic.jpg", class: "profile-picture" %>
+    <% end %>
     <p class="discussion-creator">Created by: <%= link_to @discussion.user.username, profile_path(@discussion.user) %></p>
     <p>Created <%= time_ago_in_words(@discussion.created_at) %> Ago</p>
     <p>Last updated: <%= time_ago_in_words(@discussion.updated_at) %></p>
@@ -37,6 +42,11 @@
 <div class="discussion-posts">
   <% @discussion.posts.order(:created_at).each_with_index do |post, index| %>
     <div id="post-<%= post.id %>" class="post-box">
+      <% if post.user.profile_picture.attached? %>
+        <%= image_tag post.user.profile_picture, class: "profile-picture" %>
+      <% else %>
+        <%= image_tag "ProfilePic.jpg", class: "profile-picture" %>
+      <% end %>
       <a href="#post-<%= post.id %>" class="post-number">#<%= index + 1 %></a>
       <p class="post-username">Posted by: <%= link_to post.user.username, profile_path(post.user) %></p>
       <p class="post-content"><%= post.content %></p>

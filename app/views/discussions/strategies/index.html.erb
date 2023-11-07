@@ -6,7 +6,7 @@
   <% @discussions.sort_by { |discussion| discussion.posts.last&.created_at || discussion.created_at }.reverse.each do |discussion| %>
     <div class="discussion">
       <h2 class="discussion-title"><%= link_to discussion.title, strategy_path(discussion), class: "discussion-link" %></h2>
-      <small class="discussion-description"><%= discussion.description %></small>
+      <small class="discussion-description"><%= simple_format(discussion.description) %></small>
       <p class="discussion-meta">Posted by <%= link_to discussion.user.username, profile_path(discussion.user), class: "discussion-link" %> on <%= discussion.created_at.strftime("%d %B, %Y at %I:%M %p") %></p>
       <% if discussion.posts.any? %>
         <p class="discussion-meta">Last Post: <%= discussion.posts.last.created_at.strftime("%d %B, %Y at %I:%M %p") %></p>

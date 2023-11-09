@@ -12,8 +12,8 @@
         <p>Created <%= time_ago_in_words(@event.created_at) %> Ago</p>
         <p>Last updated: <%= time_ago_in_words(@event.updated_at) %></p>
         <hr>
-        <p>Start Time: <%= @event.start_time.strftime("%B %e, %Y %H:%M") %></p>
-        <p>End Time: <%= @event.end_time.strftime("%B %e, %Y %H:%M") %></p>
+        <p>Start Time: <%= @event.start_time.strftime("%d %B, %Y at %I:%M %p") %></p>
+        <p>End Time: <%= @event.end_time.strftime("%d %B, %Y at %I:%M %p") %></p>
         <hr>
 
         <% if current_user == @event.user %>

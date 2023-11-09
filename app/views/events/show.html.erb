@@ -1,0 +1,71 @@
+<title>Events Details</title>
+
+<div class="discussion-box">
+    <h2 id="event-<%= @event.id %>" class="discussion-title"><%= @event.title %></h2>
+    <div class="discussion-metadata">
+        <% if @event.user.profile_picture.attached? %>
+            <%= image_tag @event.user.profile_picture, class: "profile-picture" %>
+        <% else %>
+            <%= image_tag "ProfilePic.jpg", class: "profile-picture" %>
+        <% end %>
+        <p class="discussion-creator">Created by: <%= link_to @event.user.username, profile_path(@event.user) %></p>
+        <p>Created <%= time_ago_in_words(@event.created_at) %> Ago</p>
+        <p>Last updated: <%= time_ago_in_words(@event.updated_at) %></p>
+        <hr>
+        <p>Start Time: <%= @event.start_time.strftime("%B %e, %Y %H:%M") %></p>
+        <p>End Time: <%= @event.end_time.strftime("%B %e, %Y %H:%M") %></p>
+        <hr>
+
+        <% if current_user == @event.user %>
+        <div class="discussion-edit">
+            <p><%= link_to "Edit Event", edit_event_path(@event) %></p>
+            <p><%= link_to "Delete", event_path(@event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "delete-button" %></p>
+        </div>
+        <% end %>
+    </div>
+    <p class="discussion-description"><%= simple_format(@event.description) %></p>
+
+    <% if @event.attachments.attached? %>
+        <div class="discussion-attachments">
+            <h3>Attachments:</h3>
+            <% @event.attachments.each do |attachment| %>
+                <% if attachment.image? %>
+                    <div class="image-container">
+                        <%= link_to rails_blob_path(attachment) do %>
+                            <%= image_tag attachment, class: "thumbnail-image" %>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <p><%= link_to attachment.filename, rails_blob_path(attachment), class: "attachment-link" %></p>
+                <% end %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+
+<div class="discussion-posts">
+    <% @event.event_threads.order(:created_at).each_with_index do |event_thread, index| %>
+        <div id="event_thread-<%= event_thread.id %>" class="post-box">
+        <% if event_thread.user.profile_picture.attached? %>
+            <%= image_tag event_thread.user.profile_picture, class: "profile-picture" %>
+        <% else %>
+            <%= image_tag "ProfilePic.jpg", class: "profile-picture" %>
+        <% end %>
+        <a href="#event_thread-<%= event_thread.id %>" class="post-number">#<%= index + 1 %></a>
+        <p class="post-username">Posted by: <%= link_to event_thread.user.username, profile_path(event_thread.user) %></p>
+        <p class="post-content"><%= simple_format(event_thread.content) %></p>
+        <p class="post-created-at">Created <%= time_ago_in_words(event_thread.created_at) %> Ago</p>
+        <p class="post-updated-at">Last updated: <%= time_ago_in_words(event_thread.updated_at) %></p>
+        </div>
+    <% end %>
+</div>
+
+<% if current_user %>
+  <%= form_with(model: @event.event_threads.build, url: event_event_threads_path(@event), local: true, class: "new-post-form") do |form| %>
+    <%= form.text_area :content, placeholder: "Enter your thread content", class: "post-content-input", rows: 4 %>
+    <%= form.submit "Post Thread", class: "post-submit-button" %>
+  <% end %>
+<% else %>
+    <p class="login-message">Please <%= link_to "sign up", new_user_registration_path, class: "login-link" %>
+     or <%= link_to "sign in", new_user_session_path, class: "login-link" %> to post a thread.</p>
+<% end %>

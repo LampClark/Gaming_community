@@ -1,0 +1,22 @@
+<title>Events</title>
+
+<div class="container">
+    <h1>Events</h1>
+
+    <% @events.each do |event| %>
+        <div class="discussion">
+            <h2 class="discussion-title"><%= link_to event.title, event_path(event), class: "discussion-link" %></h2>
+            <small class="discussion-description"><%= simple_format(event.description) %></small>
+            <p class="discussion-meta">Posted by <%= link_to event.user.username, profile_path(event.user), class: "discussion-link" %> on <%= event.created_at.strftime("%d %B, %Y at %I:%M %P") %></p>
+            <% if event.event_threads.any? %>
+                <p class="discussion-meta">Last Post: <%= event.event_threads.last.created_at.strftime("%d %B, %Y at %I:%M %P") %></p>
+            <% else %>
+                <p class="discussion-meta">Last Post: <%= event.created_at.strftime("%d %B, %Y at %I:%M %P") %></p>
+            <% end %>
+            <p class="discussion-meta">Replies: <%= event.event_threads.count %></p>
+            <hr class="discussion-separator">
+        </div>
+    <% end %>
+
+    <%= link_to "New Event", new_event_path, class: "new-discussion-link" %>
+</div>

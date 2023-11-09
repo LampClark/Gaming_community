@@ -1,0 +1,42 @@
+<% if @event.persisted? %>
+ <h1 class="discussion-title">Edit Event</h1>
+<% else %>
+ <h1 class="discussion-title">Create a new Event</h1>
+<% end %>
+
+<%= form_for @event, url: @event.persisted? ? event_path(@event) : events_path, html: { class: "discussion-form" } do |f| %>
+  <div class="form-group">
+    <%= f.label :title, "Title:" %>
+    <%= f.text_field :title, placeholder: "Enter title", class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, "Description:" %>
+    <%= f.text_area :description, placeholder: "Enter description", class: "form-textarea" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_time, "Start Time:" %>
+    <%= f.datetime_local_field :start_time, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end_time, "End Time:" %>
+    <%= f.datetime_local_field :end_time, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :attachments, "Click or Drag to Upload Files:" %>
+    <%= f.file_field :attachments, multiple: true, class: "form-input" %>
+  </div>
+
+  <div class="form-group">
+    <% if @event.persisted? %>
+        <%= link_to "Back", event_path(@event), class: "back-link" %>
+        <%= f.submit "Edit Event", class: "form-submit-button" %>
+    <% else %>
+        <%= link_to "Back", events_path, class: "back-link" %>
+        <%= f.submit "Create Event", class: "form-submit-button" %>
+    <% end %>
+  </div>
+<% end %>

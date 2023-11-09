@@ -4,15 +4,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "homepages#index"
+
   resources :discussions do
     resources :posts, only: [:create]
   end
 
-  resources :general_discussions do
-    resources :posts, only: [:create]
-  end
+  resources :general_discussions
 
   resources :strategies
+
+  resources :events do
+    resources :event_threads, only: [:create]
+  end
 
   resources :profiles, only: [:show, :edit, :update]
 

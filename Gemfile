@@ -52,6 +52,7 @@ gem "sassc-rails"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -72,6 +73,8 @@ group :development do
   gem 'capistrano-rails-tail-log'
   gem 'capistrano-rails-db'
   gem 'capistrano-rake', require: false
+  gem "ed25519"
+  gem "bcrypt_pbkdf", '< 2.0'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

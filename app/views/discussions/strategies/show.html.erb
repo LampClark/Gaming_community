@@ -19,7 +19,7 @@
     <% end %>
   </div>
   <hr>
-  <p class="discussion-description"><%= @discussion.description %></p>
+  <p class="discussion-description"><%= simple_format(@discussion.description) %></p>
 
   <% if @discussion.attachments.attached? %>
     <div class="discussion-attachments">
@@ -49,7 +49,7 @@
       <% end %>
       <a href="#post-<%= post.id %>" class="post-number">#<%= index + 1 %></a>
       <p class="post-username">Posted by: <%= link_to post.user.username, profile_path(post.user) %></p>
-      <p class="post-content"><%= post.content %></p>
+      <p class="post-content"><%= simple_format(post.content) %></p>
       <p class="post-created-at">Created <%= time_ago_in_words(post.created_at) %> Ago</p>
       <p class="post-updated-at">Last updated: <%= time_ago_in_words(post.updated_at) %></p>
     </div>

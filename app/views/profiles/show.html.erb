@@ -38,6 +38,19 @@
     <% end %>
 </ul>
 
+<h2 class="discussion-heading">Events</h2>
+<ul class="discussion-list">
+  <% @user.events.each do |event| %>
+    <li class= "discussion-item">
+      <div class="discussion-box">
+        <strong class="discussion-title">Title:</strong>
+        <%= link_to event.title, event_path(event), class: "discussion-link" %><br>
+        <strong class="discussion-owner">Owner:</strong> <%= event.user.username %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
 <h2 class="post-heading">General Discussion Posts</h2>
 <ul class="post-list">
     <% @user.posts.joins(:discussion).where("discussions.category = 'discussions'").each do |post| %>
@@ -64,4 +77,18 @@
         </div>
     </li>
     <% end %>
+</ul>
+
+<h2 class="post-heading">Event Discussion Posts</h2>
+<ul class="post-list">
+  <% @user.event_threads.joins(:event).each do |event_thread| %>
+    <li class="post-item">
+      <div class="post-box">
+        <strong class="post-discussion-title">Title:</strong>
+        <%= link_to event_thread.event.title, event_path(event_thread.event), class: "discussion-link" %><br>
+        <strong class="post-content">Content:</strong> <%= simple_format(event_thread.content) %><br>
+        <strong class="post-owner">Owner:</strong> <%= event_thread.user.username %>
+      </div>
+    </li>
+  <% end %>
 </ul>

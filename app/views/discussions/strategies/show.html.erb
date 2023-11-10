@@ -58,7 +58,7 @@
 
 <% if current_user %>
   <%= form_with(model: [ @discussion, @discussion.posts.build ], url: discussion_posts_path(@discussion), local: true, class: "new-post-form") do |form| %>
-    <%= form.text_area :content, placeholder: "Enter your thread content", class: "post-content-input" %>
+    <%= form.text_area :content, placeholder: "Enter your thread content", class: "post-content-input", rows: 4 %>
     <%= form.submit "Post Thread", class: "post-submit-button" %>
   <% end %>
 <% else %>
